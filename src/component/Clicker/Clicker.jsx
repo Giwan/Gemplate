@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 
 export default class Clicker extends Component {
 
@@ -12,9 +13,12 @@ export default class Clicker extends Component {
 
   render () {
     return(
+      <div>
       <button onClick={this.onClickerClick.bind(this)}>
         {this.state.counter}
       </button>
+      <Link to='/'>back</Link>
+    </div>
     );
   }
 

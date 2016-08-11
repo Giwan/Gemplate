@@ -5,12 +5,10 @@
  */
 
 import style from './style.scss'
-import React from "react"
+import React from 'react'
+import ReactDOM from 'react-dom';
 import $ from 'jquery'
 import Main from './component/Main/Main.jsx'
-
-
-//# sourceMappingURL=../src/app.jsx
 
 
 if (!global.Intl) {
@@ -22,8 +20,8 @@ if (!global.Intl) {
         require('core-js');
         require('intl');
         require('intl/locale-data/jsonp/en.js');
-        React.render(<Main />, document.getElementById('app-container'));
+        ReactDOM.render(<Main />, document.getElementById('app-container'));
     });
 } else {
-    React.render(<Main />, document.getElementById('app-container'));
+    ReactDOM.render(<Main />, document.getElementById('app-container'));
 }

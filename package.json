@@ -46,7 +46,8 @@
   "dependencies": {
     "jquery": "^2.1.4",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "react-router": "^2.6.1"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",

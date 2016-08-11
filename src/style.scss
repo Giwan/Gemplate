@@ -1,8 +1,24 @@
+$primary: #FFFFFF;
+$secondary: #212121;
+$accent: #2196F3;
+
+$fontSizeNormal: 3em;
+$fontSizeSmall: 1em;
 
 body {
-  background: #333333;
+  background: $secondary;
+  color: $primary;
+  font-size: $fontSizeNormal;
 }
 
-h1 {
-  color: green;
+h1, h2, h3, h4, h5 {
+  color: $accent;
+}
+
+a {
+  color: $accent;
+
+  &:visited {
+    color: darken($accent, 25);
+  }
 }
