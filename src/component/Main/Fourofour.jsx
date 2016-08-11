@@ -7,6 +7,7 @@ export default class Fourofour extends Component {
       <div>
         <h1>It's the end of the rainbow! </h1>
         <h2>404</h2>
+        <Link to='/'>Home</Link>
       </div>
     );
   }
