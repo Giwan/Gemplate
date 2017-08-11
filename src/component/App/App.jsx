@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import Clicker from 'Clicker'
 import ReduxClicker from '../ReduxClicker/ReduxClicker'
+import RandomUser from '../RandomUser/RandomUser'
 
 const mapStateToProps = (state) => {
     return {
@@ -17,10 +18,9 @@ class App extends Component {
   render () {
     return(
       <div>
-        <h1>Hello {this.props.name}</h1>
-        <Clicker />
         <h1>Redux ClickNumber: {this.props.clickNumber}</h1>
         <ReduxClicker />
+        <RandomUser />
       </div>
     );
   }

@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 
 // TODO import actions
 import {
-    INCREMENT_NUMBER
+    INCREMENT_NUMBER,
+    GET_USER_DATA
 } from '../actions/actions'
 
 function app(state = {
@@ -19,5 +20,22 @@ function app(state = {
     }
 }
 
-const myapp = combineReducers({app});
+function userStore(state = {
+    user: null
+}, action) {
+    switch(action.type) {
+        case GET_USER_DATA:
+        return {
+            ...state,
+            user: action.payload
+        }
+    }
+
+    return state;
+}
+
+const myapp = combineReducers({
+    app,
+    userStore
+});
 export default myapp;

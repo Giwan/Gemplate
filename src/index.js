@@ -15,6 +15,8 @@ import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 
 import rootReducer from './reducers/reducers'
+import { fetchUserData } from './actions/actions';
+
 // custom components
 import App from 'App'
 
@@ -27,6 +29,8 @@ const store = createStore(
         loggerMiddleware // logs app actions
     )
 );
+
+store.dispatch(fetchUserData()).then(()=> console.log(`data: `, store.getState()));
 
 ReactDOM.render(
     <Provider store={store}>
