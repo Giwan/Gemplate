@@ -3,7 +3,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   context: __dirname + "/src",
   entry: {
-    javascript: "./app.jsx",
+    javascript: "./index.js",
     html: "./index.html",
   },
 
@@ -76,7 +76,7 @@ module.exports = {
     root: __dirname,
     // alias directories to search for
     alias: {
-      Main: 'src/component/Main/Main',
+      App: 'src/component/App/App',
       Clicker: 'src/component/Clicker/Clicker',
       style: 'src/style.scss'
     },
