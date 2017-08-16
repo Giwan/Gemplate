@@ -5,20 +5,62 @@ $accent: #2196F3;
 $fontSizeNormal: 3em;
 $fontSizeSmall: 1em;
 
+$primaryColor: #F44336;
+$secondaryColor: #333333;
+$accentColor: #009688;
+//Text and background colors
+
+$shadowColor: #111111;
+
+// font
+$normalFontSize: 16px;
+$largeFont: ($normalFontSize * 1.2);
+$smallFontSize: ($normalFontSize * 0.8);
+
 body {
-  background: $secondary;
-  color: $primary;
-  font-size: $fontSizeNormal;
+  background: $secondaryColor;
+  text-align: center;
 }
 
-h1, h2, h3, h4, h5 {
-  color: $accent;
+h1 {
+  color: $primaryColor;
+  text-align: center;
+  font-size: 5em;
 }
 
-a {
-  color: $accent;
+button.btnClicker {
+  padding: 1.3em;
+  // margin: 5em;
+  outline: none;
+  border: 0;
+  background-color: $accentColor;
+  color: $secondaryColor;
+  cursor: pointer;
+  font-size: $normalFontSize;
+  display: inline-block;
 
-  &:visited {
-    color: darken($accent, 25);
+  &:hover {
+    box-shadow: -10px 10px 30px $shadowColor;
+  }
+
+  &:active {
+    box-shadow: 1px 1px 3px $shadowColor;
+    background-color: darken($accentColor, 10);
+  }
+}
+
+div.component {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid $accentColor;
+  color: $secondaryColor;
+  margin: 1em;
+
+  :nth-child(1) {
+    border: 1px solid $accentColor;
+    color: $primaryColor;
+    margin: 1em;
+    padding: 1em;
   }
 }
