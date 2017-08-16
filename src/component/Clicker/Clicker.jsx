@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // Flux
 import ClickerStore from '../../store/ClickerStore'
-
+import ClickerAction from '../../action/ClickerAction'
 export default class Clicker extends Component {
 
   constructor(props) {
@@ -19,6 +19,8 @@ export default class Clicker extends Component {
 
   componentDidMount() {
     ClickerStore.addChangeListener(this.updateClickerState);
+    ClickerAction.setText('clicker is on');
+
   }
 
   componentWillUnmount() {

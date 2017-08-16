@@ -11,6 +11,7 @@ export default class Main extends Component {
 
     this.state = {
       clickerIsOn: ClickerStore.isClickerOn(),
+      text: ClickerStore.getText()
     }
 
     this.updateClickerState = this.updateClickerState.bind(this);
@@ -18,6 +19,7 @@ export default class Main extends Component {
 
   componentDidMount() {
     ClickerStore.addChangeListener(this.updateClickerState);
+    ClickerAction.disable();
   }
 
   componentWillUnmount() {
@@ -25,7 +27,10 @@ export default class Main extends Component {
   }
 
   updateClickerState() {
-    this.setState({ clickerIsOn: ClickerStore.isClickerOn() });
+    this.setState({
+        clickerIsOn: ClickerStore.isClickerOn(),
+        text: ClickerStore.getText()
+    });
   }
 
   render () {
@@ -34,10 +39,9 @@ export default class Main extends Component {
         <h1>Hello {this.props.name}</h1>
 
         <div className="component" >
-          <div>Main component</div>
+          <div>{ this.state.text }</div>
           <div>{ this.evaluateButtons() }</div>
       </div>
-
         <Clicker />
       </div>
     );

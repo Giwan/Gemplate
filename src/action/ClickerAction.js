@@ -16,6 +16,12 @@ let ClickerAction = {
     };
     AppDispatcher.dispatch(action);
   },
+  setText(text) {
+      const action = {
+          type: ClickerConstant.SET_TEXT,
+          text: text
+      }
+  }
 }
 
 module.exports = ClickerAction;

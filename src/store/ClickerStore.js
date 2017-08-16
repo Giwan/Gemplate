@@ -5,6 +5,7 @@ import ClickerConstant from '../constant/ClickerConstant';
 
 let clickerIsOn = true;
 const CHANGE = 'change';
+let text = `Hello aldsfklajd`;
 
 function updateClickerState(receivedState) {
   clickerIsOn = receivedState;
@@ -16,6 +17,10 @@ function updateClickerState(receivedState) {
  */
 function emitChange() {
   ClickerStore.emit(CHANGE);
+}
+
+function updateTitle(newText) {
+    text = newText;
 }
 
 /*
@@ -34,6 +39,7 @@ let ClickerStore = assign({}, EventEmitter.prototype, {
   },
 
   isClickerOn: () => clickerIsOn,
+  getText: () => text,
 });
 
 function handleAction(action) {
@@ -46,6 +52,10 @@ function handleAction(action) {
       updateClickerState(false);
       emitChange();
       break;
+    case ClickerConstant.SET_TEXT:
+        updateTitle(action.text);
+        emitChage();
+        break;
   }
 }
 
