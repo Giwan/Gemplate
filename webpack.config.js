@@ -1,10 +1,10 @@
+var path = require( "path" );
+var proxy = require('http-proxy-middleware');
+
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     context: __dirname + "/src",
-    entry: {
-        javascript: "./app.jsx",
-        html: "./index.html",
-    },
+    entry: "./app.jsx",
 
     output: {
         filename: "app.js",
@@ -16,7 +16,7 @@ module.exports = {
     },
 
     module: {
-        loaders: [ {
+        rules: [ {
                 /*
                  * Apply transform to all .js files that
                  * are not in node_modules
@@ -25,7 +25,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loaders: [
-                    "react-hot",
+                    "react-hot-loader",
                     "eslint-loader",
                     "babel-loader"
                 ],
@@ -39,10 +39,10 @@ module.exports = {
                 test: /\.scss$/,
                 include: /src/,
                 loaders: [
-                    'style',
-                    'css',
-                    'autoprefixer?browsers=last 3 versions',
-                    'sass?outputStyle=expanded'
+                    'style-loader',
+                    'css-loader',
+                    'autoprefixer-loader?browsers=last 3 versions',
+                    'sass-loader?outputStyle=expanded'
                 ]
             },
 
@@ -51,7 +51,7 @@ module.exports = {
                  * Copy all html files to dist dir
                  */
                 test: /\.(html|json)$/,
-                loader: "file?name=[name].[ext]",
+                loader: "file-loader?name=[name].[ext]",
             },
 
             {
@@ -60,31 +60,40 @@ module.exports = {
                  * use require to pick them up again
                  */
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: "file?name=public/[name].[ext]",
+                loader: "file-loader?name=public/[name].[ext]",
             },
 
             {
                 test: /\.(ico)$/i,
-                loader: "file?name=[name].[ext]"
+                loader: "file-loader?name=[name].[ext]"
             },
 
         ],
     },
     resolve: {
-        root: __dirname,
+        modules: [
+            path.join( __dirname, "src" ),
+            "node_modules"
+        ],
         // alias directories to search for
         alias: {
-            Main: 'src/component/Main/Main',
-            Clicker: 'src/component/Clicker/Clicker',
-            style: 'src/style.scss'
+            Main: path.resolve( __dirname, 'src/component/Main/Main' ),
+            Clicker: path.resolve( __dirname, 'src/component/Clicker/Clicker' ),
+            style: path.resolve( __dirname, 'src/style.scss' )
         },
-        modulesDirectories: [ "node_modules", "images" ],
         // allows files to be required without extensions
-        extensions: [ "", ".js", ".jsx", ".json" ]
+        extensions: [ ".js", ".jsx", ".json" ]
     },
     devServer: {
         proxy: {
-            "/login.json": "http://nl.tst.knowblearticles.com:80/login.json"
+            '/api': {
+                target: 'http://nl.tst.knowblearticles.com',
+                secure: false,
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
         }
     }
 }

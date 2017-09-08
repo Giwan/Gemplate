@@ -19,15 +19,15 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <input type="text" ref="username"></input>
-                <input type="password" ref="password"></input>
+                <input type="text" ref="username" value="demo"></input>
+                <input type="password" ref="password" value="demo123"></input>
                 <button onClick={this.performLogin.bind(this)}>Login</button>
             </div>
         )
     }
 
     performLogin() {
-        axios.get("/login.json", {
+        axios.get("/api/login.json", {
             params: {
                 username: this.refs.username.value,
                 password: this.refs.password.value
