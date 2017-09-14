@@ -7,6 +7,6 @@
 import style from './style.scss'
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Main from './component/Main/Main.jsx'
+import Main2 from './component/Main/Main2.jsx'
 
-ReactDOM.render(<Main />, document.getElementById('app-container'));
+ReactDOM.render(<Main2 />, document.getElementById('app-container'));

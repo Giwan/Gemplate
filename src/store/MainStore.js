@@ -1,13 +1,15 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import {EventEmitter} from 'events';
+import {
+    EventEmitter
+} from 'events';
 import assign from 'object-assign';
-import ClickerConstant from '../constant/ClickerConstant';
+import MainConstant from '../constant/MainConstant';
 
-let clickerIsOn = true;
+let timerState = false;
 const CHANGE = 'change';
 
-function updateClickerState(receivedState) {
-  clickerIsOn = receivedState;
+function timerOn(val) {
+    timerState = val;
 }
 
 
@@ -15,7 +17,7 @@ function updateClickerState(receivedState) {
  * Broadcast changes to all who are interested
  */
 function emitChange() {
-  MainStore.emit(CHANGE);
+    MainStore.emit( CHANGE );
 }
 
 /*
@@ -24,29 +26,30 @@ function emitChange() {
  * Using the event emitter we copy functions from the
  * built-in events obect to our MessageStore object.
  */
-let ClickerStore = assign({}, EventEmitter.prototype, {
-  addChangeListener: function (callback) {
-    this.on(CHANGE, callback);
-  },
+let MainStore = assign( {}, EventEmitter.prototype, {
+    addChangeListener: function( callback ) {
+        this.on( CHANGE, callback );
+    },
 
-  removeChangeListener: function (callback) {
-    this.removeListener(CHANGE, callback);
-  },
+    removeChangeListener: function( callback ) {
+        this.removeListener( CHANGE, callback );
+    },
 
-  isClickerOn: () => clickerIsOn,
-});
+    isClickerOn: () => clickerIsOn,
+    getTimerState: () => timerState,
+} );
 
-function handleAction(action) {
-  switch(action.type) {
-    case ClickerConstant.ENABLE_CLICKER:
-      updateClickerState(true);
-      emitChange();
-      break;
-    case ClickerConstant.DISABLE_CLICKER:
-      updateClickerState(false);
-      emitChange();
-      break;
-  }
+function handleAction( action ) {
+    switch ( action.type ) {
+        case MainConstant.ENABLE_TIMER:
+            timerOn(true);
+            emitChange();
+            break;
+        case MainConstant.DISABLE_TIMER:
+            timerOn(false);
+            emitChange();
+            break;
+    }
 }
 
 /*
@@ -54,5 +57,5 @@ function handleAction(action) {
  * tell it which function to call when something happens that
  * we're intrrested in.
  */
-ClickerStore.dispatchToken = AppDispatcher.register(handleAction);
-module.exports = ClickerStore;
+MainStore.dispatchToken = AppDispatcher.register( handleAction );
+module.exports = MainStore;

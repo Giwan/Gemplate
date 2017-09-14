@@ -9,6 +9,7 @@ let ClickerAction = {
       type: ClickerConstant.ENABLE_CLICKER,
     };
     AppDispatcher.dispatch(action);
+
   },
   disable: ()=> {
     let action = {
